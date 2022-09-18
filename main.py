@@ -2,22 +2,22 @@
 import random
 import time
 #Variables a utilizarce
-titulo="Trivia de cultura general"
+titulo="Trivia de cultura general peruana"
 
-pregunta1="¿Como se llamo el ultimo inca?"
-alternativas1=["a)Manco Capac","b)Huascar","c)Atahualpa"]
+pregunta1="¿Cómo se llamó el último inca?"
+alternativas1=["a)Manco Cápac","b)Huascar","c)Atahualpa"]
 comentarios1=[". Fue el primero la respuesta era Atahualpa.",".Fue el penúltimo la respuesta era Atahualpa ",". Atahualpa obtiene el incanato luego de vencer a Huascar, su hermano."]
 respuesta1="c"
 
-pregunta2="¿Cual de estas alternativas, es una maravilla del mundo?"
+pregunta2="¿Cuál de estas alternativas, es una maravilla del mundo?"
 alternativas2=["a)Pollo a la brasa","b)Machupicchu","c)Lineas de nazca"]
-comentarios2=[". Pero estamos de acuerdo en que el pollo deberia ser una maravilla.",". Esta era sencilla.",". ¿Serán mensajes alien? mmm...."]
+comentarios2=[". Pero estamos de acuerdo en que el pollo debería ser una maravilla.",". Esta era sencilla.",". ¿Serán estas lineas mensajes alien? mmm...."]
 respuesta2="b"
-pregunta3="¿Como se llama el nevado mas alto del  Perú?"
+pregunta3="¿Cómo se llama el nevado más alto del  Perú?"
 alternativas3=["a)Huascarán","b)Donofrio","c)Yerupaja"]
 comentarios3=[". Su altura es de 6757 m.s.n.m.",". Sin comentarios."," . Yerupaja es el segundo con una altura de 6634 m.s.n.m."]
 respuesta3="a"
-pregunta4="¿Como se llama primer presidente de Perú?"
+pregunta4="¿Cómo se llamó primer presidente de Perú?"
 alternativas4=["a)José de San Martín Matorras","b) Francisco Javier de Luna Pizarro Pachec","c)José Bernardo de la Torre Tagle y Portocarrero "]
 comentarios4=[". De 1821-1822.",". Fue el Segundo.",". Fue el tercero"]
 respuesta4="a"
@@ -63,8 +63,12 @@ def realizarPreguntaF(pregunta,alternativas,respuesta,puntaje,comentario):
     res=input("Tu respuesta debe ser a, b o c: ")
   if res==respuesta:
     multiplicador= random.randint(2,5)
-    puntaje*=multiplicador
-    print(random.choice(positivo)+", "+nombre+comentario[valorAlternativa(res)]+"\n"+YELLOW+ "Ganaste un multiplicador de "+RESET+str(multiplicador)+"\n")
+    if puntaje > 0:
+      puntaje*=multiplicador
+      print(random.choice(positivo)+", "+nombre+comentario[valorAlternativa(res)]+"\n"+YELLOW+ "Ganaste un multiplicador de "+RESET+str(multiplicador)+"\n")
+    else:
+      puntaje=0
+      print(random.choice(positivo)+", "+nombre+comentario[valorAlternativa(res)]+"\n"+YELLOW+ "Tu puntuacion era negativa por lo que ahora es 0\n")
   else:
     print(random.choice(negativo)+", "+nombre+comentario[valorAlternativa(res)] +", pero no te preocupes no pierdes puntos \n")
   return puntaje 
@@ -82,7 +86,7 @@ while continuar==True :
   print(GREEN+'Bienvenido a mi trivia sobre cultura general peruana'+RESET)
   print('Pondremos a prueba tus conocimientos y el de tus amigos.')
   print("Responde las siguientes preguntas escribiendo la letra de la alternativa y presionando 'enter' para enviar tu respuesta.\n")
-  print('Ganaras 5 puntos por respuesta correcta y perderas 2 puntos por respuesta incorrecta')
+  print('Ganaras 5 puntos por respuesta correcta y perderas 2 puntos por respuesta incorrecta.')
   nombre=input("¿Cual es tu nombre?: \n")
   print("Cargando...")
   time.sleep(2)
